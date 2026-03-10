@@ -3,6 +3,7 @@
 import statsapi as mlbapi
 import json
 import os
+import argparse
 
 # Download all raw game data for an entire season in json format into a single folder.
 def download_season(season: int):
@@ -29,5 +30,9 @@ def download_season(season: int):
 
 
 if __name__ == "__main__":
-    season = 2025
+    parser = argparse.ArgumentParser()
+    parser.add_argument(type=int, required=True, help="The season to download data for.")
+    args = parser.parse_args()
+
+    season = args.season
     download_season(season)
